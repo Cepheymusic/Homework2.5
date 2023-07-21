@@ -8,24 +8,28 @@ public class EmployeeService  {
     List<Employee> employees = List.of(
             new Employee("Андрей", "Конин"),
             new Employee("Артём", "Вдовин"),
-            new Employee("Владимир", "Антонов")
+            new Employee("Владимир", "Шонин")
     );
-    public static final int MAX_EMPLOYEE_COUNT = 3;
+    public static final int MAX_EMPLOYEE_COUNT = 4;
 
     public void addEmployee(String firstName, String lastName) throws EmployeeStorageIsFullException {
-        if (MAX_EMPLOYEE_COUNT <= Employee) {
-            employees.add(Employee);
+        if (employees.size() <= MAX_EMPLOYEE_COUNT) {
+            employees = (List<Employee>) new Employee(firstName, lastName);
         } else {
             throw new EmployeeStorageIsFullException("Превышено количество сотрудников");
         }
     }
     public void removeEmployee(String firstName, String lastName) {
-        employees.remove(Employee);
+        employees.remove(employees);
     }
-    public void findEmployee(String firstName, String lastName) throws EmployeeNotFoundException {
-        employees.find(Employee);
-        if(Employee == null) {
-            throw new EmployeeNotFoundException("Сотрудник не найден");
+    public Employee findEmployee(String firstName, String lastName) throws EmployeeNotFoundException {
+        for(Employee value : employees) {
+            if(value.getFirstName().equals(firstName) && value.getLastName().equals(lastName)) {
+                return value;
+            }
+            else {
+                throw new EmployeeNotFoundException("Сотрудник не найден");
+            }
         }
-    }
+    }   // просит вернуть нулл , зачем мне нул, если я возвращаю ошибку?)))
 }
